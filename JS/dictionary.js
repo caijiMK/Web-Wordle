@@ -1,5 +1,5 @@
 dictionary = [
-		"ABACK",
+	"ABACK",
 	"ABASE",
 	"ABASH",
 	"ABATE",

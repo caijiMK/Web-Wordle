@@ -3,6 +3,7 @@ let answer = "";
 function getWord() {
 	let index = parseInt((Math.random() * 2105).toString());
 	answer = dictionary[index];
+	console.log(answer);
 }
 
 function init() {
@@ -50,7 +51,7 @@ function check(str) {
 	return res;
 }
 
-function close() {
+function closeHint() {
 	console.log("closing");
 	let hint = document.getElementsByClassName("hint")[0];
 	hint.style.visibility = "hidden";
@@ -88,11 +89,18 @@ document.onkeydown = function onKeyDown(event) {
 			}
 			let container = document.getElementsByClassName("container")[0]
 			container.lineNumber = (parseInt(container.lineNumber) + 1).toString();
-		} else {
+			if (res === "!!!!!") {
+				let hint = document.getElementsByClassName("hint")[0];
+				hint.style.visibility = "visible";
+				hint.innerHTML = "<span class=\"text second\">Win!</span>" +
+					"<span class=\"text first\">" + word.word + "</span>" +
+					"<span class=\"button\"><button autofocus onclick=\"closeHint()\">close</button></span>";
+			}
+		} else if (word.word.length === 5) {
 			let hint = document.getElementsByClassName("hint")[0];
 			hint.style.visibility = "visible";
 			hint.innerHTML = "<span class=\"text\">Invalid Word.</span>" +
-				"<span class=\"button\"><button onclick=\"close()\">close</button></span>";
+				"<span class=\"button\"><button autofocus onclick=\"closeHint()\">close</button></span>";
 		}
 	}
 }

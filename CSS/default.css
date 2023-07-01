@@ -45,9 +45,19 @@ div.hint {
     visibility: hidden;
     background-color: #0008;
 }
-div.hint > span.text {
+div.hint > span.text.second {
     position: relative;
-    top: 7vh;
+    top: 1vh;
+    font-size: 1.3em;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+    width: 100%;
+}
+div.hint > span.text.first {
+    position: relative;
+    top: 4vh;
     font-size: 1.5em;
     color: white;
     text-align: center;
@@ -57,7 +67,7 @@ div.hint > span.text {
 }
 div.hint > span.button {
     position: relative;
-    top: 10vh;
+    top: 7vh;
     display: inline-block;
     margin: auto;
     width: 100%;
@@ -65,8 +75,8 @@ div.hint > span.button {
 div.hint > span > button {
     font-size: 1.3em;
     width: 100%;
-    /*border: none;*/
-    background-color: #0008;
+    border: none;
+    background: none;
     color: white;
     text-align: center;
     text-decoration: underline;
