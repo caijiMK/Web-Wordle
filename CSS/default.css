@@ -46,7 +46,7 @@ div.hint {
     background-color: #0008;
 }
 div.hint > span.text.second {
-    position: relative;
+    position: absolute;
     top: 1vh;
     font-size: 1.3em;
     color: white;
@@ -56,8 +56,8 @@ div.hint > span.text.second {
     width: 100%;
 }
 div.hint > span.text.first {
-    position: relative;
-    top: 4vh;
+    position: absolute;
+    top: 6vh;
     font-size: 1.5em;
     color: white;
     text-align: center;
@@ -66,8 +66,8 @@ div.hint > span.text.first {
     width: 100%;
 }
 div.hint > span.button {
-    position: relative;
-    top: 7vh;
+    position: absolute;
+    top: 11.5vh;
     display: inline-block;
     margin: auto;
     width: 100%;
