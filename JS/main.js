@@ -74,15 +74,25 @@ document.onkeydown = function onKeyDown(event) {
 	console.log("[INFO] Get " + event.code);
 	let word = document.getElementsByClassName("word")[lineNumber];
 	if (canSeeHint === false) {
-		if (event.code.length === 4 && "KeyA" <= event.code && event.code <= "KeyZ") {
+		if (
+			event.code.length === 4 &&
+			"KeyA" <= event.code &&
+			event.code <= "KeyZ"
+		) {
 			if (word.word.length !== 5) {
-				let character = document.getElementsByClassName("character")[lineNumber * 5 + word.word.length];
+				let character =
+					document.getElementsByClassName("character")[
+						lineNumber * 5 + word.word.length
+					];
 				character.innerHTML = event.code[3];
 				word.word = word.word + event.code[3];
 			}
 		} else if (event.code === "Backspace") {
 			if (word.word.length !== 0) {
-				let character = document.getElementsByClassName("character")[lineNumber * 5 + word.word.length - 1];
+				let character =
+					document.getElementsByClassName("character")[
+						lineNumber * 5 + word.word.length - 1
+					];
 				character.innerHTML = "&nbsp";
 				word.word = word.word.substring(0, word.word.length - 1);
 			}
@@ -98,14 +108,17 @@ document.onkeydown = function onKeyDown(event) {
 						word.children[i].className = "character wrong";
 					}
 				}
-				let container = document.getElementsByClassName("container")[0]
+				let container = document.getElementsByClassName("container")[0];
 				container.lineNumber = (parseInt(container.lineNumber) + 1).toString();
 				if (res === "!!!!!") {
 					finished = true;
 					let hint = document.getElementsByClassName("hint")[0];
 					hint.style.visibility = "visible";
-					hint.innerHTML = "<span class='text second'>Win!</span>" +
-						"<span class='text first' style='color: lightgreen'>" + answer + "</span>" +
+					hint.innerHTML =
+						"<span class='text second'>Win!</span>" +
+						"<span class='text first' style='color: lightgreen'>" +
+						answer +
+						"</span>" +
 						"<span class='button'><button autofocus onclick='closeHint()'>close</button></span>" +
 						"<span class='button' style='top: 15.5vh'><button autofocus onclick='restart()'>restart</button></span>";
 				}
@@ -113,17 +126,21 @@ document.onkeydown = function onKeyDown(event) {
 					finished = true;
 					let hint = document.getElementsByClassName("hint")[0];
 					hint.style.visibility = "visible";
-					hint.innerHTML = "<span class='text second'>Failed.</span>" +
-						"<span class='text first' style='color: orangered'>" + answer + "</span>" +
+					hint.innerHTML =
+						"<span class='text second'>Failed.</span>" +
+						"<span class='text first' style='color: orangered'>" +
+						answer +
+						"</span>" +
 						"<span class='button'><button autofocus onclick='closeHint()'>close</button></span>" +
 						"<span class='button' style='top: 15.5vh'><button autofocus onclick='restart()'>restart</button></span>";
 				}
 			} else if (word.word.length === 5) {
 				let hint = document.getElementsByClassName("hint")[0];
 				hint.style.visibility = "visible";
-				hint.innerHTML = "<span class='text first'>Invalid Word.</span>" +
+				hint.innerHTML =
+					"<span class='text first'>Invalid Word.</span>" +
 					"<span class='button'><button autofocus onclick='closeHint()'>close</button></span>";
 			}
 		}
 	}
-}
+};

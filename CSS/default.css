@@ -1,83 +1,83 @@
 html {
-    font-family: 'Source Code Pro Semibold', Serif, serif;
+	font-family: "Source Code Pro Semibold", Serif, serif;
 }
 
 div.header {
-    margin: auto;
-    width: 42vh;
-    font-size: 4em;
-    text-align: center;
+	margin: auto;
+	width: 42vh;
+	font-size: 4em;
+	text-align: center;
 }
 div.container {
-    margin: auto;
+	margin: auto;
 }
 div.word {
-    margin: auto;
-    width: 42vh;
+	margin: auto;
+	width: 42vh;
 }
 div.character {
-    position: relative;
-    display: inline-block;
-    width: 6vh;
-    height: 6vh;
-    font-size: 5vh;
-    text-align: center;
-    margin: 1vh;
-    border: 1px solid grey;
-    /*border-radius: 1vh;*/
-    background-color: white;
+	position: relative;
+	display: inline-block;
+	width: 6vh;
+	height: 6vh;
+	font-size: 5vh;
+	text-align: center;
+	margin: 1vh;
+	border: 1px solid grey;
+	/*border-radius: 1vh;*/
+	background-color: white;
 }
 div.character.correct {
-    background-color: lightgreen;
+	background-color: lightgreen;
 }
 div.character.partial {
-    background-color: orange;
+	background-color: orange;
 }
 div.character.wrong {
-    background-color: grey;
+	background-color: grey;
 }
 div.hint {
-    position: relative;
-    top: -40vh;
-    margin: auto;
-    width: 36vh;
-    height: 20vh;
-    visibility: hidden;
-    background-color: #0008;
+	position: relative;
+	top: -40vh;
+	margin: auto;
+	width: 36vh;
+	height: 20vh;
+	visibility: hidden;
+	background-color: #0008;
 }
 div.hint > span.text.second {
-    position: absolute;
-    top: 1vh;
-    font-size: 1.3em;
-    color: white;
-    text-align: center;
-    display: inline-block;
-    margin: auto;
-    width: 100%;
+	position: absolute;
+	top: 1vh;
+	font-size: 1.3em;
+	color: white;
+	text-align: center;
+	display: inline-block;
+	margin: auto;
+	width: 100%;
 }
 div.hint > span.text.first {
-    position: absolute;
-    top: 6vh;
-    font-size: 1.5em;
-    color: white;
-    text-align: center;
-    display: inline-block;
-    margin: auto;
-    width: 100%;
+	position: absolute;
+	top: 6vh;
+	font-size: 1.5em;
+	color: white;
+	text-align: center;
+	display: inline-block;
+	margin: auto;
+	width: 100%;
 }
 div.hint > span.button {
-    position: absolute;
-    top: 11.5vh;
-    display: inline-block;
-    margin: auto;
-    width: 100%;
+	position: absolute;
+	top: 11.5vh;
+	display: inline-block;
+	margin: auto;
+	width: 100%;
 }
 div.hint > span > button {
-    font-size: 1.3em;
-    width: 100%;
-    border: none;
-    background: none;
-    color: white;
-    text-align: center;
-    text-decoration: underline;
+	font-size: 1.3em;
+	width: 100%;
+	border: none;
+	background: none;
+	color: white;
+	text-align: center;
+	text-decoration: underline;
 }
