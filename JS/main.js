@@ -1,7 +1,7 @@
 let answer = "";
 
 function getWord() {
-	let index = parseInt((Math.random() * 2105).toString());
+	let index = parseInt((Math.random() * dictionary.length).toString());
 	answer = dictionary[index];
 }
 function init() {
@@ -64,6 +64,7 @@ function restart() {
 }
 
 document.onkeydown = function onKeyDown(event) {
+	// 按键读取 & 胜负判断
 	if (finished === true) {
 		return;
 	}
