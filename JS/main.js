@@ -1,9 +1,8 @@
 let answer = "";
 
 function getWord() {
-	let index = parseInt((Math.random() * 2105).toString());
+	let index = parseInt((Math.random() * dictionary.length).toString());
 	answer = dictionary[index];
-	// console.log("The answer is " + answer);
 }
 function init() {
 	finished = false;
@@ -55,7 +54,6 @@ function check(str) {
 let canSeeHint = false;
 let finished = false;
 function closeHint() {
-	console.log("closing");
 	let hint = document.getElementsByClassName("hint")[0];
 	hint.style.visibility = "hidden";
 	hint.innerHTML = "";
@@ -66,6 +64,7 @@ function restart() {
 }
 
 document.onkeydown = function onKeyDown(event) {
+	// 按键读取 & 胜负判断
 	if (finished === true) {
 		return;
 	}
@@ -74,19 +73,29 @@ document.onkeydown = function onKeyDown(event) {
 	console.log("[INFO] Get " + event.code);
 	let word = document.getElementsByClassName("word")[lineNumber];
 	if (canSeeHint === false) {
-		if (event.code.length === 4 && "KeyA" <= event.code && event.code <= "KeyZ") {
+		if (
+			event.code.length === 4 &&
+			"KeyA" <= event.code &&
+			event.code <= "KeyZ"
+		) {
 			if (word.word.length !== 5) {
-				let character = document.getElementsByClassName("character")[lineNumber * 5 + word.word.length];
+				let character =
+					document.getElementsByClassName("character")[
+						lineNumber * 5 + word.word.length
+					];
 				character.innerHTML = event.code[3];
 				word.word = word.word + event.code[3];
 			}
 		} else if (event.code === "Backspace") {
 			if (word.word.length !== 0) {
-				let character = document.getElementsByClassName("character")[lineNumber * 5 + word.word.length - 1];
+				let character =
+					document.getElementsByClassName("character")[
+						lineNumber * 5 + word.word.length - 1
+					];
 				character.innerHTML = "&nbsp";
 				word.word = word.word.substring(0, word.word.length - 1);
 			}
-		} else if (event.code === "Enter") {
+		} else if (event.code === "Enter" || event.code === "NumpadEnter") {
 			if (dictionary.indexOf(word.word) !== -1) {
 				let res = check(word.word);
 				for (let i = 0; i < 5; i++) {
@@ -98,32 +107,43 @@ document.onkeydown = function onKeyDown(event) {
 						word.children[i].className = "character wrong";
 					}
 				}
-				let container = document.getElementsByClassName("container")[0]
+				let container = document.getElementsByClassName("container")[0];
 				container.lineNumber = (parseInt(container.lineNumber) + 1).toString();
 				if (res === "!!!!!") {
 					finished = true;
 					let hint = document.getElementsByClassName("hint")[0];
 					hint.style.visibility = "visible";
-					hint.innerHTML = "<span class='text second'>Win!</span>" +
-						"<span class='text first' style='color: lightgreen'>" + answer + "</span>" +
-						"<span class='button'><button autofocus onclick='closeHint()'>close</button></span>" +
-						"<span class='button' style='top: 15.5vh'><button autofocus onclick='restart()'>restart</button></span>";
+					hint.innerHTML =
+						"<span class='button'>" +
+						"<button onclick='closeHint()'>close</button>" +
+						"<button autofocus onclick='restart()'>restart</button>" +
+						"</span>" +
+						"<span class='text'>Win!</span>" +
+						"<span class='text' style='color: lightgreen'>" +
+						answer +
+						"</span>";
 				}
 				if (container.lineNumber === "6") {
 					finished = true;
 					let hint = document.getElementsByClassName("hint")[0];
 					hint.style.visibility = "visible";
-					hint.innerHTML = "<span class='text second'>Failed.</span>" +
-						"<span class='text first' style='color: orangered'>" + answer + "</span>" +
-						"<span class='button'><button autofocus onclick='closeHint()'>close</button></span>" +
-						"<span class='button' style='top: 15.5vh'><button autofocus onclick='restart()'>restart</button></span>";
+					hint.innerHTML =
+						"<span class='button'>" +
+						"<button onclick='closeHint()'>close</button>" +
+						"<button autofocus onclick='restart()'>restart</button>" +
+						"</span>" +
+						"<span class='text'>Failed.</span>" +
+						"<span class='text' style='color: orangered'>" +
+						answer +
+						"</span>";
 				}
 			} else if (word.word.length === 5) {
 				let hint = document.getElementsByClassName("hint")[0];
 				hint.style.visibility = "visible";
-				hint.innerHTML = "<span class='text first'>Invalid Word.</span>" +
-					"<span class='button'><button autofocus onclick='closeHint()'>close</button></span>";
+				hint.innerHTML =
+					"<span class='button'><button autofocus onclick='closeHint()'>close</button></span>" +
+					"<span class='text'>Invalid Word.</span>";
 			}
 		}
 	}
-}
+};

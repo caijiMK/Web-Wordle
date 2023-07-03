@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wordle</title>
-    <link rel="stylesheet" href="CSS/default.css"/>
-    <script src="JS/dictionary.js"></script>
-    <script src="JS/main.js"></script>
-</head>
-<body>
-    <div class="header">
-        <span style="color: lightgreen;">W</span><span style="color: gray;">or</span><span style="color: orange;">d</span><span style="color: gray;">le</span>
-    </div>
-    <div class="container"></div>
-    <script>init()</script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Wordle</title>
+		<link rel="stylesheet" href="CSS/default.css" />
+		<script src="JS/dictionary.js"></script>
+		<script src="JS/main.js"></script>
+		<script src="JS/theme.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<span>W</span><span>or</span
+			><span>d</span><span>le</span>
+		</div>
+		<div class="bar">
+			<div class="theme" onclick="changeTheme('CSS/datk-theme.css')"> Change Theme </div>
+			<!-- TODO: 更多主题 & 更优秀的切换 -->
+		</div>
+		<div class="container"></div>
+		<script>
+			init();
+		</script>
+		<!-- TODO: remain -->
+	</body>
 </html>

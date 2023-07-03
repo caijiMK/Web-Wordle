@@ -1,83 +1,142 @@
 html {
-    font-family: 'Source Code Pro Semibold', Serif, serif;
+	font-family: "Source Code Pro Semibold", "Fira Code Medium", Serif, serif;
+
+	/* 使用颜色编码以确保在不同设备下的颜色一致性 (除了透明) */
+	/* 使用变量以便于主题更改 */
+
+	/* 变量命名要求
+	 * --{变量类型}-{标签/类/id}-{用途...}
+	 */
+
+	--color-body-background: #ffffff;
+
+	--color-header-main: #808080;
+	--color-header-light-1: #90ee90;
+	--color-header-light-2: #ffa500;
+
+	--color-container-background: transparent;
+
+	--color-character-background: #ffffff;
+	--color-character-background-correct: #90ee90;
+	--color-character-background-partial: #ffa500;
+	--color-character-background-wrong: #808080;
+	--color-character-border: #808080;
+	--color-character-main: #000000;
+	--color-character-correct: #000000;
+	--color-character-partial: #000000;
+	--color-character-wrong: #000000;
+	--style-character-border: solid;
+	--width-character-border: 1px;
+
+	--color-hint-background: #0008;
+	--color-hint-border: #0008;
+	--color-hint-main: #ffffff;
+	--color-hint-button: #ffffff;
+	--style-hint-border: none;
+	--width-hint-border: 0;
+	--width-hint-width: 42vh;
+	--width-hint-height: 20vh;
+	--position-hint-top: 30%;
+	--position-hint-left: 50%;
+}
+
+body {
+	background-color: var(--color-body-background);
 }
 
 div.header {
-    margin: auto;
-    width: 42vh;
-    font-size: 4em;
-    text-align: center;
+	margin: auto;
+	width: fit-content;
+	font-size: 4em;
+	text-align: center;
+	color: var(--color-header-main);
 }
+div.header > span:nth-child(1) {
+	color: var(--color-header-light-1);
+}
+div.header > span:nth-child(3) {
+	color: var(--color-header-light-2);
+}
+
+div.bar {
+	float: left;
+	margin-left: calc(50vw - 30vw);
+	/* TODO: 菜单栏样式 */
+}
+
 div.container {
-    margin: auto;
+	background-color: var(--color-container-background);
+	margin: auto;
+	width: fit-content;
 }
+
 div.word {
-    margin: auto;
-    width: 42vh;
+	margin: auto;
+	width: fit-content;
 }
+
 div.character {
-    position: relative;
-    display: inline-block;
-    width: 6vh;
-    height: 6vh;
-    font-size: 5vh;
-    text-align: center;
-    margin: 1vh;
-    border: 1px solid grey;
-    /*border-radius: 1vh;*/
-    background-color: white;
+	position: relative;
+	display: inline-block;
+	width: 6vh;
+	height: 6vh;
+	font-size: 5vh;
+	text-align: center;
+	margin: 1vh;
+	color: var(--color-character-main);
+	border: var(--width-character-border) var(--style-character-border)
+		var(--color-character-border);
+	background-color: var(--color-character-background);
 }
 div.character.correct {
-    background-color: lightgreen;
+	background-color: var(--color-character-background-correct);
+	color: var(--color-character-correct);
 }
 div.character.partial {
-    background-color: orange;
+	background-color: var(--color-character-background-partial);
+	color: var(--color-character-partial);
 }
 div.character.wrong {
-    background-color: grey;
+	background-color: var(--color-character-background-wrong);
+	color: var(--color-character-wrong);
 }
+
 div.hint {
-    position: relative;
-    top: -40vh;
-    margin: auto;
-    width: 36vh;
-    height: 20vh;
-    visibility: hidden;
-    background-color: #0008;
+	position: absolute;
+	top: calc(var(--position-hint-top) - var(--width-hint-height) / 2);
+	left: calc(var(--position-hint-left) - var(--width-hint-width) / 2);
+	width: var(--width-hint-width);
+	height: var(--width-hint-height);
+	background-color: var(--color-hint-background);
+	color: var(--color-hint-main);
+	border: var(--width-hint-border) var(--style-hint-border)
+		var(--color-hint-border);
+	visibility: hidden;
 }
-div.hint > span.text.second {
-    position: absolute;
-    top: 1vh;
-    font-size: 1.3em;
-    color: white;
-    text-align: center;
-    display: inline-block;
-    margin: auto;
-    width: 100%;
-}
-div.hint > span.text.first {
-    position: absolute;
-    top: 6vh;
-    font-size: 1.5em;
-    color: white;
-    text-align: center;
-    display: inline-block;
-    margin: auto;
-    width: 100%;
-}
+
 div.hint > span.button {
-    position: absolute;
-    top: 11.5vh;
-    display: inline-block;
-    margin: auto;
-    width: 100%;
+	position: relative;
+	top: 80%;
+	line-height: 20%;
+	margin: auto;
+	width: fit-content;
+	display: block;
 }
 div.hint > span > button {
-    font-size: 1.3em;
-    width: 100%;
-    border: none;
-    background: none;
-    color: white;
-    text-align: center;
-    text-decoration: underline;
+	font-size: 100%;
+	margin: 0.5vh;
+	width: fit-content;
+	border: none;
+	background: none;
+	color: var(--color-hint-button);
+	text-align: center;
+	text-decoration: underline;
+}
+div.hint > span.text {
+	position: relative;
+	top: 1.5vh;
+	margin: auto;
+	width: fit-content;
+	text-align: center;
+	display: block;
 }
