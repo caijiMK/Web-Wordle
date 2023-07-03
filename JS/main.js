@@ -3,7 +3,6 @@ let answer = "";
 function getWord() {
 	let index = parseInt((Math.random() * 2105).toString());
 	answer = dictionary[index];
-	// console.log("The answer is " + answer);
 }
 function init() {
 	finished = false;
@@ -55,7 +54,6 @@ function check(str) {
 let canSeeHint = false;
 let finished = false;
 function closeHint() {
-	// console.log("closing");
 	let hint = document.getElementsByClassName("hint")[0];
 	hint.style.visibility = "hidden";
 	hint.innerHTML = "";
