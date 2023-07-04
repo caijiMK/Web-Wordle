@@ -122,8 +122,7 @@ document.onkeydown = function onKeyDown(event) {
 						"<span class='text' style='color: lightgreen'>" +
 						answer +
 						"</span>";
-				}
-				if (container.lineNumber === "6") {
+				} else if (container.lineNumber === "6") {
 					finished = true;
 					let hint = document.getElementsByClassName("hint")[0];
 					hint.style.visibility = "visible";
