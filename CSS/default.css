@@ -44,6 +44,11 @@ body {
 	background-color: var(--color-body-background);
 }
 
+div.content {
+	margin: auto;
+	width: 80vw;
+}
+
 div.header {
 	margin: auto;
 	width: fit-content;
@@ -60,7 +65,6 @@ div.header > span:nth-child(3) {
 
 div.bar {
 	float: left;
-	margin-left: calc(50vw - 30vw);
 	/* TODO: 菜单栏样式 */
 }
 
@@ -99,6 +103,72 @@ div.character.partial {
 div.character.wrong {
 	background-color: var(--color-character-background-wrong);
 	color: var(--color-character-wrong);
+}
+
+div.container.remain {
+	margin-top: 2vh;
+}
+
+div.keyline {
+	width: fix-content;
+}
+div.keyline > .key {
+	position: relative;
+	display: inline-block;
+	width: 6vh;
+	height: 6vh;
+	margin: 1vh;
+	font-size: 5vh;
+	text-align: center;
+	color: var(--color-character-main);
+	border: var(--width-character-border) var(--style-character-border)
+		var(--color-character-border);
+	background-color: var(--color-character-background);
+}
+div.keyline > .spkey { 
+	position: relative;
+	display: inline-block;
+	width: 6vh;
+	height: 6vh;
+	margin: 1vh;
+	font-size: 5vh;
+	text-align: center;
+	color: var(--color-character-main);
+	border: var(--width-character-border) var(--style-character-border)
+		var(--color-character-border);
+	background-color: var(--color-character-background);
+}
+div.keyline > .spkey.enter {
+	position: relative;
+	top: calc(-8vh - var(--width-character-border) * 2);
+	left: calc(16vh + var(--width-character-border) * 4);
+	width: calc(14vh + var(--width-character-border) * 2);
+	height: 6vh;
+}
+div.keyline > .spkey.backspace {
+	position: relative;
+	top: calc(-8vh - var(--width-character-border) * 2);
+	left: calc(56vh + var(--width-character-border) * 13);
+	width: calc(30vh + var(--width-character-border) * 7);
+	height: 6vh;
+}
+div.keyline > .key.correct {
+	background-color: var(--color-character-background-correct);
+	color: var(--color-character-correct);
+}
+div.keyline > .key.partial {
+	background-color: var(--color-character-background-partial);
+	color: var(--color-character-partial);
+}
+div.keyline > .key.wrong {
+	background-color: var(--color-character-background-wrong);
+	color: var(--color-character-wrong);
+}
+div.keyline > * {
+	cursor: pointer;
+}
+div.keyline > *:hover {
+	box-shadow: 0 0 8px #0003, 0 0 15px #0001;
 }
 
 div.hint {
