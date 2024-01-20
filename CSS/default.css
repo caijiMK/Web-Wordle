@@ -42,7 +42,7 @@ html {
 
 body {
 	background-color: var(--color-body-background);
-	line-height: normal;
+	line-height: normal !important;
 }
 
 div.header {
