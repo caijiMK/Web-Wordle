@@ -52,16 +52,35 @@
 		return res;
 	}
 
-	let canSeeHint = false;
 	let finished = false;
-	function closeHint() {
-		let hint = document.getElementsByClassName("hint")[0];
-		hint.style.visibility = "hidden";
-		hint.innerHTML = "";
-	}
 	function restart() {
-		closeHint();
 		init();
+	}
+
+	let id = 0;
+
+	function clickButton(msg, t) {
+		msg.nag('hide');
+		if (t === "Click to Restart") {
+			restart();
+		}
+	}
+	function newMessage(t, col = "orange") {
+		let msg = document.createElement("div"), cur = ++id;
+		msg.setAttribute("id", "msg-" + cur);
+		msg.setAttribute("class", "ui " + col + " inverted nag");
+		msg.onclick = () => clickButton($(`#msg-${cur}`), t);
+		msg.innerHTML = "<div class='title' style='color: #FFF;'>" + t + "</div>";
+		document.getElementById("messages").appendChild(msg);
+		$("#msg-" + cur).nag("show");
+		if (t != "Click to Restart") {
+			setTimeout(function () {
+				$("#msg-" + cur).nag("hide");
+				setTimeout(function () {
+					document.getElementById("messages").removeChild(msg);
+				}, 2000);
+			}, 2500);
+		}
 	}
 
 	document.onkeydown = function onKeyDown(event) {
@@ -72,77 +91,47 @@
 		let container = document.getElementsByClassName("container")[0];
 		let lineNumber = parseInt(container.lineNumber);
 		let word = document.getElementsByClassName("word")[lineNumber];
-		if (canSeeHint === false) {
-			if (
-				event.code.length === 4 &&
-				"KeyA" <= event.code &&
-				event.code <= "KeyZ"
-			) {
-				if (word.word.length !== 5) {
-					let character =
-						document.getElementsByClassName("character")[
-							lineNumber * 5 + word.word.length
-						];
-					character.innerHTML = event.code[3];
-					word.word = word.word + event.code[3];
-				}
-			} else if (event.code === "Backspace") {
-				if (word.word.length !== 0) {
-					let character =
-						document.getElementsByClassName("character")[
-							lineNumber * 5 + word.word.length - 1
-						];
-					character.innerHTML = "&nbsp";
-					word.word = word.word.substring(0, word.word.length - 1);
-				}
-			} else if (event.code === "Enter" || event.code === "NumpadEnter") {
-				if (dictionary.indexOf(word.word) !== -1) {
-					let res = check(word.word);
-					for (let i = 0; i < 5; i++) {
-						if (res[i] === "!") {
-							word.children[i].className = "character correct";
-						} else if (res[i] === "#") {
-							word.children[i].className = "character partial";
-						} else {
-							word.children[i].className = "character wrong";
-						}
+		if (event.code.length === 4 && "KeyA" <= event.code && event.code <= "KeyZ") {
+			if (word.word.length !== 5) {
+				let character =
+					document.getElementsByClassName("character")
+						[lineNumber * 5 + word.word.length];
+				character.innerHTML = event.code[3];
+				word.word = word.word + event.code[3];
+			}
+		} else if (event.code === "Backspace") {
+			if (word.word.length !== 0) {
+				let character =
+					document.getElementsByClassName("character")
+						[lineNumber * 5 + word.word.length - 1];
+				character.innerHTML = "&nbsp";
+				word.word = word.word.substring(0, word.word.length - 1);
+			}
+		} else if (event.code === "Enter" || event.code === "NumpadEnter") {
+			if (dictionary.indexOf(word.word) !== -1) {
+				let res = check(word.word);
+				for (let i = 0; i < 5; i++) {
+					if (res[i] === "!") {
+						word.children[i].className = "character correct";
+					} else if (res[i] === "#") {
+						word.children[i].className = "character partial";
+					} else {
+						word.children[i].className = "character wrong";
 					}
-					let container = document.getElementsByClassName("container")[0];
-					container.lineNumber = (parseInt(container.lineNumber) + 1).toString();
-					if (res === "!!!!!") {
-						finished = true;
-						let hint = document.getElementsByClassName("hint")[0];
-						hint.style.visibility = "visible";
-						hint.innerHTML =
-							"<span class='button'>" +
-							"<button onclick='closeHint()'>close</button>" +
-							"<button autofocus onclick='restart()'>restart</button>" +
-							"</span>" +
-							"<span class='text'>Win!</span>" +
-							"<span class='text' style='color: lightgreen'>" +
-							answer +
-							"</span>";
-					} else if (container.lineNumber === "6") {
-						finished = true;
-						let hint = document.getElementsByClassName("hint")[0];
-						hint.style.visibility = "visible";
-						hint.innerHTML =
-							"<span class='button'>" +
-							"<button onclick='closeHint()'>close</button>" +
-							"<button autofocus onclick='restart()'>restart</button>" +
-							"</span>" +
-							"<span class='text'>Failed.</span>" +
-							"<span class='text' style='color: orangered'>" +
-							answer +
-							"</span>";
-					}
-				} else if (word.word.length === 5) {
-					let hint = document.getElementsByClassName("hint")[0];
-					hint.style.visibility = "visible";
-					hint.innerHTML =
-						"<span class='button'><button autofocus onclick='closeHint()'>close</button></span>" +
-						"<span class='text'>Invalid Word.</span>";
 				}
+				let container = document.getElementsByClassName("container")[0];
+				container.lineNumber = (parseInt(container.lineNumber) + 1).toString();
+				if (res === "!!!!!") {
+					finished = true;
+					newMessage("Win!", "green");
+					newMessage("Click to Restart", "blue");
+				} else if (container.lineNumber === "6") {
+					finished = true;
+					newMessage("Failed. Answer: " + answer, "red");
+					newMessage("Click to Restart", "blue");
+				}
+			} else if (word.word.length === 5) {
+				newMessage('Invalid Word.')
 			}
 		}
 	};

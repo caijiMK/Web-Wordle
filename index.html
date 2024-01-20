@@ -5,10 +5,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Wordle</title>
 		<link rel="stylesheet" href="CSS/default.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+			integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+			crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.js"
+			integrity="sha512-5cguXwRllb+6bcc2pogwIeQmQPXEzn2ddsqAexIBhh7FO1z5Hkek1J9mrK2+rmZCTU6b6pERxI7acnp1MpAg4Q=="
+			crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css"
+			integrity="sha512-n//BDM4vMPvyca4bJjZPDh7hlqsQ7hqbP9RH18GF2hTXBY5amBwM2501M0GPiwCU/v9Tor2m13GOTFjk00tkQA=="
+			crossorigin="anonymous" />
+		<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 		<script src="JS/dictionary.js"></script>
 		<script src="JS/theme.js"></script>
 	</head>
 	<body>
+		<div id="messages" style="position: fixed; right: 0; top: 0;"></div>
 		<div class="header">
 			<span>W</span><span>or</span
 			><span>d</span><span>le</span>
