@@ -41,7 +41,7 @@ html {
 }
 
 body {
-	background-color: var(--color-body-background);
+	background-color: var(--color-body-background) !important;
 	line-height: normal !important;
 }
 
